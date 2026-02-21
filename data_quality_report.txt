@@ -1,0 +1,73 @@
+======================================================================
+DATA QUALITY ASSESSMENT REPORT
+======================================================================
+Generated: 2026-02-21 22:41:15
+
+======================================================================
+DATA STRUCTURE
+======================================================================
+Base folder: ferm_data
+Total run folders: 6 (Total files: 18)
+
+Run Folders:
+  1. KP-B1-Run-02
+  2. KP-B2_run1
+  3. KPB2-run3
+  4. KP_B1_run1
+  5. KP_B2_run2
+  6. run3_KPB1
+
+File Analysis:
+
+  Number of rows per file:
+    offline_samples.csv           : 11-13 rows
+    bioreactor_log.csv            : 242-245 rows
+    feed_log.csv                  : 7-13 rows
+
+  Number of columns per file:
+    offline_samples.csv           : 6-6 columns
+    bioreactor_log.csv            : 5-5 columns
+    feed_log.csv                  : 4-4 columns
+
+======================================================================
+QUALITY CHECKS SUMMARY
+======================================================================
+Total quality parameters checked: 7
+Passed: 3
+Failed: 4
+
+DETAILED RESULTS:
+
+[FAIL] Column Consistency: FAIL
+  Extra and missing columns found
+  File: 01_all_offline_samples.csv
+  Folder: run3_KPB1
+  Extra columns: Glucose_mM
+  Missing columns: Glucose_gL
+
+[FAIL] Missing Values: FAIL
+  Missing data detected in 2 column(s)
+  File: 01_all_offline_samples.csv
+  Column 'Glucose_gL': 14 missing (20.6%) in folders: KP-B1-Run-02, run3_KPB1
+  Column 'Glucose_mM': 57 missing (83.8%) in folders: KP-B1-Run-02, KP-B2_run1, KPB2-run3, KP_B1_run1, KP_B2_run2
+
+[FAIL] Duplicate Rows: FAIL
+  2 duplicate rows found
+  File: 01_all_offline_samples.csv
+  Folder: KP_B2_run2
+
+[PASS] Data Types: PASS
+  All types correct
+
+[FAIL] Sampling Consistency: FAIL
+  Count range: 11-13
+
+[PASS] Value Ranges: PASS
+  All values in valid ranges
+
+[PASS] Time Continuity: PASS
+  No significant gaps
+
+======================================================================
+END OF REPORT
+======================================================================
