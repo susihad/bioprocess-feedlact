@@ -110,5 +110,5 @@ jupyter notebook 01_data_exploration_and_eda.ipynb
 ## Contact
 
 **Susi**  
-Data Analyst | Bioprocess Engineer  
-https://www.linkedin.com/in/susilahadiyati/ | susila.hadiyati@gmail.com
+Data Analyst | Bioprocess Engineer
+[LinkedIn](https://www.linkedin.com/in/susilahadiyati/) | [Portfolio](https://www.notion.so/hadiyati/Bio-Data-Portfolio-28cfe43e2446806982bcf9574924117d)
