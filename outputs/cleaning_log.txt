@@ -1,0 +1,12 @@
+DATA CLEANING LOG
+======================================================================
+Generated: 2026-02-21 22:41:16
+
+ACTIONS PERFORMED:
+----------------------------------------------------------------------
+1. Removed 5 duplicates
+2. Sorted datasets chronologically
+3. Converted Glucose_mM → Glucose_gL for run3_KPB1
+4. Extracted metadata: Strain, Methanol_Strategy
+
+======================================================================
