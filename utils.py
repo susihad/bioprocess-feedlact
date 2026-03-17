@@ -4,9 +4,7 @@
 """
 Universal data processing functions for laboratory experiments.
 
-Works for ANY experiment type - no domain knowledge required.
-All functions are config-driven and require no modification
-for different experiment types (fermentation, cell culture, genomics, etc.)
+Works for universal experiment type, such as  fermentation, cell culture, genomics, etc.)
 
 Functions:
 - Consolidation: consolidate_files()
@@ -18,8 +16,8 @@ Functions:
 - Reporting: generate_report()
 - Utility: list_available_checks()
 
-Author: [Your Name]
-Created: [Date]
+Author: Susi
+Created: Feb 2026
 """
 
 import os
@@ -48,6 +46,7 @@ def consolidate_files(config):
     Example:
         consolidated, folders = consolidate_files(CONSOLIDATION_CONFIG)
     """
+    # Extract values from config
     base_folder = config['base_folder']
     prefix = config['run_folder_prefix']
     id_extractor = config['id_extraction']
@@ -66,14 +65,14 @@ def consolidate_files(config):
         for folder in run_folders:
             file_path = os.path.join(base_folder, folder, pattern)
             
-            if os.path.exists(file_path):
+            if os.path.exists(file_path):   # Handles missing files
                 df = pd.read_csv(file_path)
                 
                 # Add ID column if not present
                 if id_col not in df.columns:
                     df.insert(0, id_col, id_extractor(folder))
                 
-                dfs.append(df)
+                dfs.append(df)             # If file doesn't exist, skip it (no error), skip if missing (false)
         
         # Combine all runs
         if dfs:
@@ -91,7 +90,7 @@ def check_column_consistency(df, group_by_col, file_name):
     Check if all groups (e.g., runs) have the same columns.
     Flags groups with different column sets.
     
-    Universal - works for any grouped data.
+    Universal - works for grouped data.
     
     Args:
         df (DataFrame): Data to check
@@ -101,8 +100,9 @@ def check_column_consistency(df, group_by_col, file_name):
     Returns:
         dict: Check result with status and details
     """
-    issues = []
-    column_sets = {}
+    # Create empty containers to track results
+    issues = []             # List to store problems found
+    column_sets = {}        # Dictionary to store columns per run
     
     for group_id in df[group_by_col].unique():
         group_data = df[df[group_by_col] == group_id]
@@ -466,7 +466,7 @@ Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
     # ========================================================================
     # DATA STRUCTURE SECTION
     # ========================================================================
-
+    
     if run_folders and consolidation_config:
         base_folder = consolidation_config['base_folder']
         
@@ -475,13 +475,14 @@ Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
         total_files = len(run_folders) * len(file_patterns)
         
         report += f"""{'='*70}
+        
 DATA STRUCTURE
 {'='*70}
 Base folder: {base_folder}
 Total run folders: {len(run_folders)} (Total files: {total_files})
 
 """
-        
+            
         # List run folders
         report += "Run Folders:\n"
         for i, folder in enumerate(sorted(run_folders), 1):
@@ -533,6 +534,7 @@ Total run folders: {len(run_folders)} (Total files: {total_files})
     # QUALITY CHECKS SUMMARY
     # ========================================================================
     report += f"""{'='*70}
+        
 QUALITY CHECKS SUMMARY
 {'='*70}
 Total quality parameters checked: {len(all_checks)}
@@ -541,7 +543,7 @@ Failed: {failed}
 
 DETAILED RESULTS:
 """
-    
+        
     # ========================================================================
     # DETAILED CHECK RESULTS - CONSISTENT FORMAT
     # ========================================================================
@@ -768,6 +770,7 @@ DETAILED RESULTS:
         f.write(report)
     
     return output_path
+
 # ============================================================================
 # UTILITY FUNCTIONS
 # ============================================================================
