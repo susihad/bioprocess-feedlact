@@ -19,14 +19,36 @@ Systematic analysis of fed-batch fermentation data to identify optimal condition
 ---
 
 ## Repository Structure
+## Repository Structure
+
 ```
-├── 01_data_exploration_and_eda.ipynb    Main analysis notebook
-├── config_ferm.py                       Experiment-specific configuration
-├── config_domain_bioprocess.py          Domain-level fermentation parameters
-├── utils.py                             Universal reusable functions
-├── ferm_data/                           Raw experimental data (6 runs)
-├── ferm_data_cleaned/                   Quality-validated cleaned data
-└── outputs/                             Analysis results and figures
+bioprocess-feedlact/
+├── 01_data_exploration_and_eda.ipynb       # EDA pipeline (consolidate, clean, visualize)
+├── 02_statistical_and_predictive_modeling.ipynb  # ANOVA, ML, ODE models
+├── 03_insights_and_recommendations.ipynb   # Executive summary & PDF report
+├── config_ferm.py                          # Experiment-specific settings
+├── config_domain_bioprocess.py             # Generic fermentation parameters
+├── utils.py                                # Universal reusable functions
+├── requirements.txt                        # Python dependencies
+├── README.md                               # Documentation
+├── .gitignore                              # Git ignore rules
+│
+├── ferm_data/                              # Raw data (6 runs × 3 files = 18 CSVs)
+│   └── Run_*/
+│       ├── offline_samples.csv
+│       ├── bioreactor_log.csv
+│       └── feed_log.csv
+│
+├── ferm_data_cleaned/                      # Cleaned data (4 files)
+│   ├── master_offline_samples.csv
+│   ├── master_bioreactor_log.csv
+│   ├── master_feed_log.csv
+│   └── metadata.csv
+│
+└── outputs/                                # Results
+    ├── figures/                            # 8 PNG visualizations
+    ├── models/                             # Trained models (RF, ODE)
+    └── *.txt, *.pdf                        # Reports
 ```
 
 ---
