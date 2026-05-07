@@ -19,7 +19,6 @@ Systematic analysis of fed-batch fermentation data to identify optimal condition
 ---
 
 ## Repository Structure
-## Repository Structure
 
 ```
 bioprocess-feedlact/
